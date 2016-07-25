@@ -155,3 +155,9 @@ endif
 
 " Map Ctrl+N to next search result in incremental search mode.
 :cnoremap <c-n> <CR>n/<c-p>
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'ctrlpvim/ctrlp.vim'
+
+call plug#end()
