@@ -1,8 +1,6 @@
 " Leader
-let mapleader = " "
+let mapleader = "\\"
 
-set expandtab
-set shiftwidth=2
 set softtabstop=2
 set backspace=2
 set nobackup
@@ -63,6 +61,9 @@ set shiftwidth=2
 set shiftround
 set expandtab
 
+" Retab mapping
+map <F2> :retab <CR> :wq! <CR>
+
 " Display extra whitespace
 set list listchars=tab:»·,trail:·,nbsp:·
 
@@ -75,7 +76,7 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag -Q -l --nocolor --hidden -g "" %s'
+  let g:ctrlp_user_command = 'ag -Q -l --ignore .git --nocolor --hidden -g "" %s'
 
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
@@ -97,11 +98,11 @@ nnoremap <leader><leader> <c-^>
 "nnoremap <Down> :echoe "Use j"<CR>
 
 " vim-test mappings
-nnoremap <silent> <Leader>t :TestFile<CR>
-nnoremap <silent> <Leader>s :TestNearest<CR>
-nnoremap <silent> <Leader>l :TestLast<CR>
-nnoremap <silent> <Leader>a :TestSuite<CR>
-nnoremap <silent> <leader>gt :TestVisit<CR>
+" nnoremap <silent> <Leader>t :TestFile<CR>
+" nnoremap <silent> <Leader>s :TestNearest<CR>
+" nnoremap <silent> <Leader>l :TestLast<CR>
+" nnoremap <silent> <Leader>a :TestSuite<CR>
+" nnoremap <silent> <leader>gt :TestVisit<CR>
 
 " Run commands that require an interactive shell
 nnoremap <Leader>r :RunInInteractiveShell<space>
@@ -175,11 +176,32 @@ let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
+" splitjoin config
+
+let g:splitjoin_split_mapping = ''
+let g:splitjoin_join_mapping = ''
+
+" Remove trailing whitespace before saving in .rb files
+autocmd BufWritePre *.rb %s/\s\+$//e
+
+" Disable all bells
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
+
+nmap <Leader>J :SplitjoinJoin<cr>
+nmap <Leader>S :SplitjoinSplit<cr>
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'thoughtbot/vim-rspec'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fugitive'
+Plug 'joker1007/vim-markdown-quote-syntax'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'dracula/vim'
+Plug 'tpope/vim-vinegar'
 
 call plug#end()
+
+color dracula
