@@ -1,0 +1,6 @@
+alias hcprod 'heroku run console -r production'
+alias hlprod 'heroku logs -t -r production'
+alias hcstag 'heroku run console -r staging'
+alias hlstag 'heroku logs -t -r staging'
+alias hcsand 'heroku run console -r sandbox'
+alias hlsand 'heroku logs -t -r sandbox'

@@ -1,0 +1,1 @@
+/Users/josch/.config/fisherman/z/functions/z.awk

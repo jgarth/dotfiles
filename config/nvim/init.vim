@@ -91,6 +91,12 @@ inoremap <S-Tab> <c-n>
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
 
+augroup autowindowopen
+  autocmd!
+  autocmd QuickFixCmdPost [^l]* cwindow
+  autocmd QuickFixCmdPost l*    lwindow
+augroup END
+
 " Get off my lawn
 "nnoremap <Left> :echoe "Use h"<CR>
 "nnoremap <Right> :echoe "Use l"<CR>
@@ -114,12 +120,6 @@ let g:html_indent_tags = 'li\|p'
 set splitbelow
 set splitright
 
-" Quicker window movement
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
-
 " configure syntastic syntax checking to check on open as well as save
 let g:syntastic_check_on_open=1
 let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
@@ -139,25 +139,22 @@ set diffopt+=vertical
 " Color Podfile like ruby
 au BufNewFile,BufRead,BufReadPost Podfile set syntax=ruby
 
-" Local config
-if filereadable($HOME . "/.vimrc.local")
-  source ~/.vimrc.local
-endif
-
 " Map Ctrl+N to next search result in incremental search mode.
 :cnoremap <c-n> <CR>n/<c-p>
 
-" RSpec.vim mappings
-map <Leader>f :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
-
-" RSpec.vim config
-let g:rspec_command = "!bin/rspec {spec}"
+" vim-test mappings and config
+map <Leader>f :TestFile<CR>
+map <Leader>s :TestNearest<CR>
+" make test commands execute in split term
+let test#strategy = "neovim"
 
 " Insert newline by pressing Enter without going into insert
 " mode
 nmap <CR> o<Esc>
+
+" Python provider config
+let g:python_host_prog  = '/usr/bin/python'
+let g:python3_host_prog  = '/usr/local/bin/python3'
 
 " NERDCommenter config
 
@@ -181,6 +178,11 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:splitjoin_split_mapping = ''
 let g:splitjoin_join_mapping = ''
 let g:splitjoin_ruby_curly_braces = 0
+let g:splitjoin_ruby_hanging_args = 0
+
+" ruby-vim
+
+let ruby_no_expensive = 0
 
 " Remove trailing whitespace before saving in .rb files
 autocmd BufWritePre *.rb %s/\s\+$//e
@@ -189,13 +191,24 @@ autocmd BufWritePre *.rb %s/\s\+$//e
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
+" Do not use truecolor
+set notermguicolors
+
+" <Esc> will remove current search highlight
+nnoremap <esc> :noh<return><esc>:<del>
+
 nmap <Leader>J :SplitjoinJoin<cr>
 nmap <Leader>S :SplitjoinSplit<cr>
 
-call plug#begin('~/.vim/plugged')
+" Toggle quickfix list via vim-toggle-quickfix
+nmap <Leader>q <Plug>window:quickfix:toggle
+
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+call plug#begin('~/.nvim/plugged')
 
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'thoughtbot/vim-rspec'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fugitive'
 Plug 'joker1007/vim-markdown-quote-syntax'
@@ -207,8 +220,18 @@ Plug 'danro/rename.vim'
 Plug 'lifepillar/vim-wwdc17-theme'
 Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'dag/vim-fish'
+Plug 'janko-m/vim-test'
+Plug 'tpope/vim-unimpaired'
+Plug 'drmingdrmer/vim-toggle-quickfix'
+Plug 'osyo-manga/vim-over'
+Plug 'adelarsq/vim-matchit'
 
 call plug#end()
 
 color dracula
-"color wwdc17
+" color wwdc17
