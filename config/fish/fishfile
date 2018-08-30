@@ -1,2 +1,20 @@
+# `done` plugin config: exclude these commands from notifications
+set -U __done_exclude '(hcprod|git (?!push|pull))'
+
+# `done` plugin config: Default notification threshold is 5s, I want 10s
+set -U __done_min_cmd_duration 10000
+
+fisherman/done
+fisherman/fishkit
+fisherman/get
 fisherman/getopts
+fisherman/git_util
+fisherman/host_info
+fisherman/humanize_duration
+fisherman/last_job_id
+fisherman/menu
+fisherman/pwd_info
+fisherman/pwd_is_home
+fisherman/simple
+fisherman/transfer
 fisherman/z

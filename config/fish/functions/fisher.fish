@@ -1853,7 +1853,7 @@ function __fisher_reset_default_fish_colors
     set -U fish_color_quote brown
     set -U fish_color_autosuggestion 555 yellow
     set -U fish_color_user green
-    set -U fish_color_valid_path --underline
+    set -U fish_color_valid_path 
     set -U fish_color_cwd green
     set -U fish_color_cwd_root red
     set -U fish_color_match cyan

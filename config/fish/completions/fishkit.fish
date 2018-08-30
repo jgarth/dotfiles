@@ -1,0 +1,1 @@
+/Users/josch/.config/fisherman/fishkit/completions/fishkit.fish

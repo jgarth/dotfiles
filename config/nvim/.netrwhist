@@ -1,11 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_cnt =4
 let g:netrw_dirhist_1='/Users/josch/Work/viaeurope'
-let g:netrw_dirhist_2='/Users/josch/Work/viaeurope/engines'
-let g:netrw_dirhist_3='/Users/josch/Work/viaeurope/engines/last_mile'
-let g:netrw_dirhist_4='/Users/josch/Work/viaeurope/engines/last_mile/app'
-let g:netrw_dirhist_5='/Users/josch/Work/viaeurope/engines/last_mile/app/workers'
-let g:netrw_dirhist_6='/Users/josch/Work/viaeurope/engines/last_mile/app/workers/last_mile'
-let g:netrw_dirhist_7='/Users/josch/Work/viaeurope'
-let g:netrw_dirhist_8='/Users/josch/Work/viaeurope/engines/customs/db/migrate'
-let g:netrw_dirhist_9='/Users/josch/Work/viaeurope'
+let g:netrw_dirhist_2='/Users/josch/Work/viaeurope/db/migrate'
+let g:netrw_dirhist_3='/Users/josch/Work/viaeurope'
+let g:netrw_dirhist_4='/Users/josch/Work/viaeurope-b2c-import'

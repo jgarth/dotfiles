@@ -47,6 +47,7 @@ augroup vimrcEx
 
   " Set syntax highlighting for specific file types
   autocmd BufRead,BufNewFile Appraisals set filetype=ruby
+  autocmd BufRead,BufNewFile *.prawn set filetype=ruby
   autocmd BufRead,BufNewFile *.md set filetype=markdown
   autocmd BufRead,BufNewFile .{jscs,jshint,eslint}rc set filetype=json
 augroup END
@@ -191,8 +192,10 @@ autocmd BufWritePre *.rb %s/\s\+$//e
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
-" Do not use truecolor
-set notermguicolors
+" Use truecolor
+" if (has("termguicolors"))
+"  set termguicolors
+" endif
 
 " <Esc> will remove current search highlight
 nnoremap <esc> :noh<return><esc>:<del>
@@ -206,32 +209,65 @@ nmap <Leader>q <Plug>window:quickfix:toggle
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
+" copy current file name (relative/absolute) to system clipboard
+if has("mac") || has("gui_macvim") || has("gui_mac")
+  " relative path  (src/foo.txt)
+  nnoremap <leader>cf :let @*=expand("%")<CR>
+
+  " absolute path  (/something/src/foo.txt)
+  nnoremap <leader>cF :let @*=expand("%:p")<CR>
+endif
+
+" text objects to select inside&around '/' (e.g. regex)
+" inside / (edit)
+onoremap <silent> i/ :<C-U>normal! T/vt/<CR>
+" around / (edit)
+onoremap <silent> a/ :<C-U>normal! F/vf/<CR>
+" inside / (visual)
+xnoremap <silent> i/ :<C-U>normal! T/vt/<CR>
+" around / (visual)
+xnoremap <silent> a/ :<C-U>normal! F/vf/<CR>
+
+
 call plug#begin('~/.nvim/plugged')
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fugitive'
-Plug 'joker1007/vim-markdown-quote-syntax'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'dracula/vim'
 Plug 'tpope/vim-vinegar'
-Plug 'kchmck/vim-coffee-script'
-Plug 'danro/rename.vim'
-Plug 'lifepillar/vim-wwdc17-theme'
+" Plug 'lifepillar/vim-wwdc17-theme'
 Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'dag/vim-fish'
 Plug 'janko-m/vim-test'
 Plug 'tpope/vim-unimpaired'
 Plug 'drmingdrmer/vim-toggle-quickfix'
-Plug 'osyo-manga/vim-over'
-Plug 'adelarsq/vim-matchit'
+Plug 'kristijanhusak/vim-hybrid-material'
+Plug 'jacoborus/tender.vim'
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'tyrannicaltoucan/vim-quantum'
+Plug 'arcticicestudio/nord-vim'
 
 call plug#end()
 
-color dracula
+" Lightline
+" let g:lightline = { 'colorscheme': 'tender' }
+" let g:lightline = { 'colorscheme': 'material_vim' }
+let g:lightline = { 'colorscheme': 'nord' }
+
+" color dracula
+" color tender
 " color wwdc17
+" set background=dark
+" let g:material_theme_style = 'palenight' " 'default' | 'palenight' | 'dark'
+" color material
+" color quantum
+
+set termguicolors
+let g:nord_comment_brightness = 20
+color nord

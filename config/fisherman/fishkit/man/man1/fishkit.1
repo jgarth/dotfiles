@@ -1,0 +1,81 @@
+.\" generated with Ronn/v0.7.3
+.\" http://github.com/rtomayko/ronn/tree/0.7.3
+.
+.TH "FISHKIT" "1" "May 2016" "" "fishkit"
+.
+.SH "NAME"
+\fBfishkit\fR \- Create a plugin from a template
+.
+.SH "SYNOPSIS"
+\fBfishkit\fR [\fITEMPLATE\fR]
+.
+.br
+\fBfishkit\fR TEMPLATE < strings\.yaml
+.
+.br
+.
+.SH "DESCRIPTION"
+Create a plugin from a template\.
+.
+.SH "USAGE"
+.
+.nf
+
+fishkit plugin
+.
+.fi
+.
+.IP "" 4
+.
+.nf
+
+> What\'s your plugin name? tron
+> What\'s your plugin about? It\'s just pong
+> What\'s your GitHub username? flynn
+    \.editorconfig
+    \.gitignore
+    \.travis\.yml
+    completions/tron\.fish
+    functions/tron\.fish
+    LICENSE
+    README\.md
+.
+.fi
+.
+.IP "" 0
+.
+.SH "STRINGS"
+.
+.nf
+
+fishkit TEMPLATE < strings\.yml
+.
+.fi
+.
+.IP "" 4
+.
+.nf
+
+name: tron
+description: It\'s just pong
+author: Kevin Flynn
+owner: flynn
+.
+.fi
+.
+.IP "" 0
+.
+.SH "Templates"
+The available templates are:
+.
+.IP "\(bu" 4
+Plugin
+.
+.IP "\(bu" 4
+Prompt
+.
+.IP "\(bu" 4
+Snippet
+.
+.IP "" 0
+
