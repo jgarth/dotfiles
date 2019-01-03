@@ -153,6 +153,9 @@ let test#strategy = "neovim"
 " mode
 nmap <CR> o<Esc>
 
+" Yank selection to system clipboard
+vmap _ "+y
+
 " Python provider config
 let g:python_host_prog  = '/usr/bin/python'
 let g:python3_host_prog  = '/usr/local/bin/python3'
@@ -237,6 +240,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'dracula/vim'
 Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-rhubarb' " vim-vinegar GitHub integration
 " Plug 'lifepillar/vim-wwdc17-theme'
 Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
@@ -268,6 +272,6 @@ let g:lightline = { 'colorscheme': 'nord' }
 " color material
 " color quantum
 
-set termguicolors
+" set termguicolors
 let g:nord_comment_brightness = 20
 color nord

@@ -1,1 +1,1 @@
-set -x PAGER "less"
+set -xg PAGER "less"
