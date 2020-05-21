@@ -92,6 +92,9 @@ inoremap <S-Tab> <c-n>
 " Switch between the last two files
 nnoremap <leader><leader> <c-^>
 
+" Keybinding to remove extra whitespace
+nnoremap <leader>ss :%s/\s\+$//e<CR>
+
 augroup autowindowopen
   autocmd!
   autocmd QuickFixCmdPost [^l]* cwindow
@@ -188,8 +191,8 @@ let g:splitjoin_ruby_hanging_args = 0
 
 let ruby_no_expensive = 0
 
-" Remove trailing whitespace before saving in .rb files
-autocmd BufWritePre *.rb %s/\s\+$//e
+" Remove trailing whitespace before saving in .rb or .js files
+autocmd BufWritePre *.rb,*.js %s/\s\+$//e
 
 " Disable all bells
 set noerrorbells visualbell t_vb=
@@ -231,7 +234,37 @@ xnoremap <silent> i/ :<C-U>normal! T/vt/<CR>
 " around / (visual)
 xnoremap <silent> a/ :<C-U>normal! F/vf/<CR>
 
+" Go to tab by number
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+noremap <leader>0 :tablast<cr>
 
+" Close tabs to the right via :tabcr (tab close right)
+function! TabCloseRight(bang)
+    let cur=tabpagenr()
+    while cur < tabpagenr('$')
+        exe 'tabclose' . a:bang . ' ' . (cur + 1)
+    endwhile
+endfunction
+
+command! -bang Tabcr call TabCloseRight('<bang>')
+
+
+" markdown-preview config
+nmap <leader>p <Plug>MarkdownPreviewToggle
+
+" copy file in netrw
+nnoremap <silent> <Leader>c :clear<bar>silent exec "!cp '%:p' '%:p:h/%:t:r-copy.%:e'"<bar>redraw<bar>echo "Copied " . expand('%:t') . ' to ' . expand('%:t:r') . '-copy.' . expand('%:e')<cr>
+
+
+" Plugins
 call plug#begin('~/.nvim/plugged')
 
 Plug 'ctrlpvim/ctrlp.vim'
@@ -241,7 +274,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'dracula/vim'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-rhubarb' " vim-vinegar GitHub integration
-" Plug 'lifepillar/vim-wwdc17-theme'
+Plug 'lifepillar/vim-wwdc17-theme'
 Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-repeat'
@@ -256,22 +289,36 @@ Plug 'jacoborus/tender.vim'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'tyrannicaltoucan/vim-quantum'
 Plug 'arcticicestudio/nord-vim'
+Plug 'kchmck/vim-coffee-script'
+Plug 'chr4/nginx.vim'
+Plug 'tpope/vim-bundler'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+Plug 'connorholyday/vim-snazzy'
+Plug 'ayu-theme/ayu-vim'
+Plug 'yuezk/vim-js'
+Plug 'maxmellon/vim-jsx-pretty'
 
 call plug#end()
+
+set termguicolors
 
 " Lightline
 " let g:lightline = { 'colorscheme': 'tender' }
 " let g:lightline = { 'colorscheme': 'material_vim' }
 let g:lightline = { 'colorscheme': 'nord' }
+" let g:lightline = { 'colorscheme': 'snazzy' }
+" let ayucolor="mirage"
 
-" color dracula
+let g:nord_comment_brightness = 20
+
+" colorscheme ayu
+" color snazzy
 " color tender
+" color dracula
 " color wwdc17
 " set background=dark
 " let g:material_theme_style = 'palenight' " 'default' | 'palenight' | 'dark'
 " color material
 " color quantum
-
-" set termguicolors
-let g:nord_comment_brightness = 20
 color nord
+

@@ -1,3 +1,7 @@
+function fish-kitty_postexec --on-event fish_postexec
+kitty @ set-tab-title (prompt_pwd)
+end
+
 # `done` plugin config: exclude these commands from notifications
 set -U __done_exclude '(hcprod|git (?!push|pull))'
 
@@ -18,3 +22,6 @@ fisherman/pwd_is_home
 fisherman/simple
 fisherman/transfer
 fisherman/z
+
+chruby 2.6.0
+rafaelrinaldi/pure

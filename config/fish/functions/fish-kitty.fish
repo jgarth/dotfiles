@@ -1,0 +1,1 @@
+/Users/josch/Work/fish-kitty/functions/fish-kitty.fish
