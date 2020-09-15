@@ -309,7 +309,8 @@ let g:lightline = { 'colorscheme': 'nord' }
 " let g:lightline = { 'colorscheme': 'snazzy' }
 " let ayucolor="mirage"
 
-let g:nord_comment_brightness = 20
+" Deprecated
+" let g:nord_comment_brightness = 20
 
 " colorscheme ayu
 " color snazzy

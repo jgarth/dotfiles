@@ -6,7 +6,7 @@ end
 set -U __done_exclude '(hcprod|git (?!push|pull))'
 
 # `done` plugin config: Default notification threshold is 5s, I want 10s
-set -U __done_min_cmd_duration 10000
+set -U __done_min_cmd_duration 1000
 
 fisherman/done
 fisherman/fishkit
@@ -23,5 +23,4 @@ fisherman/simple
 fisherman/transfer
 fisherman/z
 
-chruby 2.6.0
 rafaelrinaldi/pure
